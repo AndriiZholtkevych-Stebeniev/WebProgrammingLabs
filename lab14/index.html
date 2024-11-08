@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практична робота 14</title>
+    <style>
+        #canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .row > * {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Робота з файлами</h1>
+    
+    <div class="container">
+        <div class="row">
+            <label for="startX">Початкова точка X:</label>
+            <input type="number" id="startX" required>
+            <label for="startY">Початкова точка Y:</label>
+            <input type="number" id="startY" required>
+            <button id="drawButton">Намалювати</button>
+        </div>
+        
+        <div class="row">
+            <input type="file" id="fileInput" accept=".txt">
+        </div>
+        
+        <div class="row">
+            <label for="textInput">Текст:</label>
+            <input type="text" id="textInput">
+            <button id="textButton">Вивести текст</button>
+        </div>
+        
+        <div class="row">
+            <label for="textStartX">Початкова точка текста X:</label>
+            <input type="number" id="textStartX" required>
+            <label for="textStartY">Початкова точка текста Y:</label>
+            <input type="number" id="textStartY" required>
+        </div>
+    </div>
+    
+    <canvas id="canvas" width="500" height="500"></canvas>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отримуюча сторінка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 300px; 
+            border-collapse: separate; /* Разделяем границы ячеек */
+            border: double 3px #ddd; /* Двойная граница вокруг таблицы */
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        th, td {
+            width: 50%; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Викликаючи сторінка передала наступне:</h1>
+    <table>
+        <tbody id="dataTableBody"></tbody>
+    </table>
+
+    <script>
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queries = queryString.split("&");
+
+            queries.forEach(query => {
+                const [key, value] = query.split("=");
+                if (key) {
+                    params[decodeURIComponent(key)] = decodeURIComponent(value);
+                }
+            });
+
+            return params;
+        }
+
+        function displayData() {
+            const params = getQueryParams();
+            const tableBody = document.getElementById('dataTableBody');
+
+            const row1 = document.createElement('tr');
+            const cellKey1 = document.createElement('td');
+            const cellValue1 = document.createElement('td');
+            cellKey1.textContent = 'Прізвище';
+            cellValue1.textContent = params['surname'];
+            row1.appendChild(cellKey1);
+            row1.appendChild(cellValue1);
+            tableBody.appendChild(row1);
+
+            const row2 = document.createElement('tr');
+            const cellKey2 = document.createElement('td');
+            const cellValue2 = document.createElement('td');
+            cellKey2.textContent = 'Посада';
+            cellValue2.textContent = params['position'];
+            row2.appendChild(cellKey2);
+            row2.appendChild(cellValue2);
+            tableBody.appendChild(row2);
+        }
+
+        displayData();
+    </script>
+</body>
+</html>
+
+
+

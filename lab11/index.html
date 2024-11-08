@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Множення матриць 3x3</title>
+    <style>
+        table {
+            margin: 10px;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+            width: 50px;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        function createMatrixInput(id) {
+            const table = document.createElement("table");
+            table.id = id;
+            for (let i = 0; i < 3; i++) {
+                const row = document.createElement("tr");
+                for (let j = 0; j < 3; j++) {
+                    const cell = document.createElement("td");
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.value = 0;
+                    cell.appendChild(input);
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            return table;
+        }
+
+        function getMatrixValues(id) {
+            const table = document.getElementById(id);
+            const values = [];
+            const rows = table.getElementsByTagName("tr");
+            for (let i = 0; i < 3; i++) {
+                const rowValues = [];
+                const cells = rows[i].getElementsByTagName("td");
+                for (let j = 0; j < 3; j++) {
+                    const input = cells[j].getElementsByTagName("input")[0];
+                    rowValues.push(parseFloat(input.value) || 0);
+                }
+                values.push(rowValues);
+            }
+            return values;
+        }
+
+        function multiplyMatrices(A, B) {
+            const result = [];
+            for (let i = 0; i < 3; i++) {
+                result[i] = [];
+                for (let j = 0; j < 3; j++) {
+                    result[i][j] = 0;
+                    for (let k = 0; k < 3; k++) {
+                        result[i][j] += A[i][k] * B[k][j];
+                    }
+                }
+            }
+            return result;
+        }
+
+        function displayResult(matrix) {
+            const resultTable = document.getElementById("result");
+            resultTable.innerHTML = "";
+            for (let i = 0; i < 3; i++) {
+                const row = document.createElement("tr");
+                for (let j = 0; j < 3; j++) {
+                    const cell = document.createElement("td");
+                    cell.textContent = matrix[i][j];
+                    row.appendChild(cell);
+                }
+                resultTable.appendChild(row);
+            }
+        }
+
+        function createPage() {
+            const app = document.getElementById("app");
+
+            const container = document.createElement("div");
+            container.className = "container";
+
+            const matrixALabel = document.createElement("h3");
+            matrixALabel.textContent = "Матриця A:";
+            const matrixA = createMatrixInput("matrixA");
+
+            const matrixBLabel = document.createElement("h3");
+            matrixBLabel.textContent = "Матриця B:";
+            const matrixB = createMatrixInput("matrixB");
+
+            const button = document.createElement("button");
+            button.textContent = "Помножити";
+            button.onclick = function () {
+                const A = getMatrixValues("matrixA");
+                const B = getMatrixValues("matrixB");
+                const result = multiplyMatrices(A, B);
+                displayResult(result);
+            };
+
+            const resultLabel = document.createElement("h3");
+            resultLabel.textContent = "Результат:";
+            const resultTable = document.createElement("table");
+            resultTable.id = "result";
+
+            container.appendChild(matrixALabel);
+            container.appendChild(matrixA);
+            container.appendChild(matrixBLabel);
+            container.appendChild(matrixB);
+            container.appendChild(button);
+            container.appendChild(resultLabel);
+            container.appendChild(resultTable);
+            app.appendChild(container);
+        }
+
+        createPage();
+    </script>
+</body>
+
+</html>

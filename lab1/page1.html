@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практичне завдання 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: rgb(161, 159, 159);
+        }
+
+        h1 {
+            font-weight: bold;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid black;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .task-text {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        .main-img {
+            margin-top: 15px;
+            margin-left: 50px;
+        }
+
+        .pic {
+            margin-left: 50px;
+        }
+
+        a{
+            color: purple;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        video {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        audio {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1><strong>Розробка простої веб-сторінки з використанням HTML5</strong></h1>
+        <hr>
+        <p class="task-text">
+            <strong>World Wide Web (WWW, web, веб, Всесвітня павутина)</strong> -це розподілена інформаційна
+        </p>
+        <p class="task-text">
+            система, яка надає доступ до гіпертекстових документів через протокол HTTP (HyperText
+        </p>
+        <p class="task-text">
+            Transfer Protocol). WWW - це мережева технологія, яка побудована на клієнт-серверній архітектурі та
+        </p>
+        <p class="task-text">
+            використовує інфраструктуру Інтернет для взаємодії між сервером та клієнтом (мал. 1).
+        </p>
+    </section>
+    <img class="main-img" src="./pic001.gif" alt="img">
+    <p class="pic">
+        <strong>Мал.1.</strong>Клієнт-серверна архітектура WWW
+    </p>
+    <section>
+        <p class="task-text">
+            Загальна структура веб-сторінки
+        </p>
+        <pre>
+        <code>
+        &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;Практична робота&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;h1&gt;Зразок&lt;/h1&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+        </code>
+        </pre>
+    </section>
+    <section>
+        <p>
+            <a href="page2.html">Перегляд коду на окремій сторінці</a>
+        </p>
+    </section>
+    <section>
+        <p class="task-text">
+            Виведення відео за допомогою сеціального тегу
+        </p>
+        <video class="video" width="640" height="360" controls>
+            <source src="./videolabs.mp4" type="video/mp4">
+        </video>
+    </section>
+    <section>
+        <p class="task-text">
+            Виведення аудіо за допомогою сеціального тегу
+        </p>
+        <p>
+            Шум моря
+        </p>
+        <audio class="audio" controls>
+            <source src="./sea.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+    <hr>
+    <footer>
+        <p class="task-text">
+            Практичне завдання виконав Жолткевич-Стебенєв А.Д.
+        </p>
+    </footer>
+</body>
+
+</html>

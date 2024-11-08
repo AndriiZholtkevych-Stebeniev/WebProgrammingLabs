@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('fon009.png');
+    min-width: 600px;
+}
+
+.logo, .footer {
+    border: 1px solid #3399FF;
+    background: #3399FF;
+    margin: 3px;
+    padding: 10px;
+    width: 100%; 
+    text-align: left; 
+}
+
+.shapka{
+    background-color: #3399FF;
+    border: 1px solid #3D82D4;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+}
+
+div{
+    display: block;
+}
+
+
+.container {
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+}
+
+.LFT, .centerLayer, .RT {
+    height: 100px; 
+    background: #efeff2;
+    border: 1px solid #3D82D4;
+    border-radius: 10px;
+    text-align: justify; 
+    line-height: 150%;
+}
+
+.LFT {
+    width: 20%;
+    float: left;
+    margin-left: 10px;
+}
+
+.centerLayer {
+    width: 60%; 
+    float: center;
+    margin-left: 10px;
+}
+
+.RT {
+    width: 20%;
+    float: right;
+    margin-left: 10px;
+}
+
+.footer {
+    border: 1px solid #3399FF;
+    background: #3399FF;
+    margin: 3px;
+}

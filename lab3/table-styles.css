@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    background-color: rgb(161, 159, 159);
+}
+
+table {
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+
+th,
+td {
+    border: 1px solid black;
+    text-align: center;
+    background-color: white;
+}
+
+th {
+    background-color: rgb(175, 175, 175);
+    color: black;
+    font-weight: bold;
+}
+
+a {
+    color: purple;
+    text-decoration: underline;
+    cursor: pointer;
+}

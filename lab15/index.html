@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Графіки тригонометричних функцій - 4 координатні чверті</title>
+    <style>
+        .graph-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        svg {
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+            width: 400px;
+            height: 300px;
+        }
+
+        text {
+            font-size: 12px;
+            fill: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Графіки тригонометричних функцій</h1>
+    <div class="graph-container">
+        <div>
+            <h3>sin(x)</h3>
+            <svg id="sinGraph"></svg>
+        </div>
+        <div>
+            <h3>cos(x)</h3>
+            <svg id="cosGraph"></svg>
+        </div>
+        <div>
+            <h3>tg(x)</h3>
+            <svg id="tanGraph"></svg>
+        </div>
+    </div>
+
+    <script>
+        function drawGraph(svgId, func, color) {
+            const svg = document.getElementById(svgId);
+            const width = svg.clientWidth;
+            const height = svg.clientHeight;
+            const centerX = width / 2;  
+            const centerY = height / 2; 
+            const scale = 40;  
+            const axisX = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            axisX.setAttribute("x1", 0);
+            axisX.setAttribute("y1", centerY);
+            axisX.setAttribute("x2", width);
+            axisX.setAttribute("y2", centerY);
+            axisX.setAttribute("stroke", "#666");
+            axisX.setAttribute("stroke-width", "1");
+            svg.appendChild(axisX);
+
+            const axisY = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            axisY.setAttribute("x1", centerX);
+            axisY.setAttribute("y1", 0);
+            axisY.setAttribute("x2", centerX);
+            axisY.setAttribute("y2", height);
+            axisY.setAttribute("stroke", "#666");
+            axisY.setAttribute("stroke-width", "1");
+            svg.appendChild(axisY);
+
+            let pathData = "";
+            for (let x = -centerX; x < centerX; x++) {
+                const fx = x / scale;
+                const y = centerY - func(fx) * scale;
+
+                if (x === -centerX) {
+                    pathData += `M ${x + centerX} ${y}`;
+                } else {
+                    pathData += ` L ${x + centerX} ${y}`;
+                }
+            }
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", pathData);
+            path.setAttribute("stroke", color);
+            path.setAttribute("stroke-width", "2");
+            path.setAttribute("fill", "none");
+            svg.appendChild(path);
+        }
+
+        drawGraph("sinGraph", Math.sin, "red");
+        drawGraph("cosGraph", Math.cos, "blue");
+        drawGraph("tanGraph", Math.tan, "green");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відправляюча сторінка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            background-color: #add8e6;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        label {
+            margin-right: 10px; 
+            white-space: nowrap; 
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Форма вводу даних</h1>
+    </div>
+    <h2>Введіть дані:</h2>
+    <form id="dataForm">
+        <div class="form-group">
+            <label for="surname">Ваше прізвище:</label>
+            <input type="text" id="surname" name="surname" required>
+        </div>
+        <div class="form-group">
+            <label for="position">Виберіть посаду:</label>
+            <select id="position" name="position" required>
+                <option value="">Оберіть посаду</option>
+                <option value="Аналітик">Аналітик</option>
+                <option value="Економіст">Економіст</option>
+                <option value="Бухгалтер">Бухгалтер</option>
+                <option value="Програміст">Програміст</option>
+            </select>
+        </div>
+        <button type="submit">Відправити</button>
+    </form>
+
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const surname = document.getElementById('surname').value;
+            const position = document.getElementById('position').value;
+            const url = `result.html?surname=${encodeURIComponent(surname)}&position=${encodeURIComponent(position)}`;
+            window.location.href = url;
+        });
+    </script>
+</body>
+</html>
+
+
