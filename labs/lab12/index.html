@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Множення матриць 5x5</title>
+    <style>
+        table {
+            margin: 10px;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+            width: 50px;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        class MatrixOperations {
+            static multiplyMatrices(A, B) {
+                const result = [];
+                for (let i = 0; i < 5; i++) {
+                    result[i] = [];
+                    for (let j = 0; j < 5; j++) {
+                        result[i][j] = 0;
+                        for (let k = 0; k < 5; k++) {
+                            result[i][j] += A[i][k] * B[k][j];
+                        }
+                    }
+                }
+                return result;
+            }
+        }
+
+        class MatrixInputOutput {
+            constructor(matrixId) {
+                this.matrixId = matrixId;
+            }
+
+            createMatrixInput() {
+                const table = document.createElement("table");
+                table.id = this.matrixId;
+                for (let i = 0; i < 5; i++) {
+                    const row = document.createElement("tr");
+                    for (let j = 0; j < 5; j++) {
+                        const cell = document.createElement("td");
+                        const input = document.createElement("input");
+                        input.type = "number";
+                        input.value = 0;
+                        cell.appendChild(input);
+                        row.appendChild(cell);
+                    }
+                    table.appendChild(row);
+                }
+                return table;
+            }
+
+            getMatrixValues() {
+                const table = document.getElementById(this.matrixId);
+                const values = [];
+                const rows = table.getElementsByTagName("tr");
+                for (let i = 0; i < 5; i++) {
+                    const rowValues = [];
+                    const cells = rows[i].getElementsByTagName("td");
+                    for (let j = 0; j < 5; j++) {
+                        const input = cells[j].getElementsByTagName("input")[0];
+                        rowValues.push(parseFloat(input.value) || 0);
+                    }
+                    values.push(rowValues);
+                }
+                return values;
+            }
+
+            displayResult(matrix) {
+                const resultTable = document.getElementById("result");
+                resultTable.innerHTML = "";
+                for (let i = 0; i < 5; i++) {
+                    const row = document.createElement("tr");
+                    for (let j = 0; j < 5; j++) {
+                        const cell = document.createElement("td");
+                        cell.textContent = matrix[i][j];
+                        row.appendChild(cell);
+                    }
+                    resultTable.appendChild(row);
+                }
+            }
+        }
+
+        function createPage() {
+            const app = document.getElementById("app");
+            const container = document.createElement("div");
+            container.className = "container";
+
+            const matrixAIO = new MatrixInputOutput("matrixA");
+            const matrixBIO = new MatrixInputOutput("matrixB");
+
+            const matrixALabel = document.createElement("h3");
+            matrixALabel.textContent = "Матриця A:";
+            const matrixA = matrixAIO.createMatrixInput();
+
+            const matrixBLabel = document.createElement("h3");
+            matrixBLabel.textContent = "Матриця B:";
+            const matrixB = matrixBIO.createMatrixInput();
+
+            const button = document.createElement("button");
+            button.textContent = "Помножити";
+            button.onclick = function () {
+                const A = matrixAIO.getMatrixValues();
+                const B = matrixBIO.getMatrixValues();
+                const result = MatrixOperations.multiplyMatrices(A, B);
+                matrixAIO.displayResult(result);
+            };
+
+            const resultLabel = document.createElement("h3");
+            resultLabel.textContent = "Результат:";
+            const resultTable = document.createElement("table");
+            resultTable.id = "result";
+
+            container.appendChild(matrixALabel);
+            container.appendChild(matrixA);
+            container.appendChild(matrixBLabel);
+            container.appendChild(matrixB);
+            container.appendChild(button);
+            container.appendChild(resultLabel);
+            container.appendChild(resultTable);
+            app.appendChild(container);
+        }
+
+        createPage();
+    </script>
+</body>
+
+</html>
